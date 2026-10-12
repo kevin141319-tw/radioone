@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radio One On Air</title>
+<meta name="description" content="臺中放送局 Radio One On Air：中部人近百年來耳朵甦醒的地方。參觀、打卡、音樂會購票、會員與場地租借。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="hdr" id="top">
+  <div class="wrap">
+    <div class="hdr-row">
+      <a class="logo" href="index.html"><b>Radio One</b><i>On Air</i><small>臺中放送局</small></a>
+      <div class="hdr-cta">
+        <span class="onair" aria-label="現正放送">ON AIR</span>
+        <a class="btn small solid" href="events.html">購票</a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">選台</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <nav class="dial" aria-label="網站導覽">
+      <div class="dial-scale"></div>
+      <ol id="dialList"><li><a href="index.html" aria-current="page">首頁</a></li><li><a href="spots.html">打卡點</a></li><li><a href="history.html">場館歷史</a></li><li><a href="spaces.html">空間介紹</a></li><li><a href="archive.html">活動紀錄</a></li><li><a href="events.html">系列活動・購票</a></li><li><a href="club.html">Radio One Club</a></li><li><a href="rental.html">租借場地</a></li></ol>
+      <div class="dial-now"><span class="mono">TUNED</span><b>首頁</b></div>
+      <div class="needle" id="needle"></div>
+    </nav>
+  </div>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <button class="btn small close" id="drawerClose">關閉</button>
+  <a href="index.html" aria-current="page">首頁 <span>Home</span></a><a href="spots.html">打卡點 <span>Photo Spots</span></a><a href="history.html">場館歷史 <span>History</span></a><a href="spaces.html">空間介紹 <span>Spaces</span></a><a href="archive.html">活動紀錄 <span>Archive</span></a><a href="events.html">系列活動・購票 <span>Events & Tickets</span></a><a href="club.html">Radio One Club <span>Membership</span></a><a href="rental.html">租借場地 <span>Venue Hire</span></a>
+</div>
+<main><section id="home"><div class="hero">
+    <div class="hero-media"><img src="assets/img/facade-canopy.jpg" alt="老榕樹蔭下的臺中放送局淡黃色洋樓主立面與拱門玄關"></div>
+    <div class="hero-video" id="heroVideo" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow"><span class="lamp"></span>JFCK · 1935.05.11 開播 · 臺中市北區電台街 1 號</p>
+      <h1>Radio One<br><i class="air">On Air</i></h1>
+      <p class="sub">中部人近百年來耳朵甦醒的地方</p>
+      <p class="lead">1935 年，第一道電波從這棟淡黃色洋樓出發，把世界的聲音送進中部的家。九十年後，ON AIR 的紅燈再次亮起。這一次，請你走進來聽。</p>
+      <div class="hero-actions">
+        <a class="btn solid" href="events.html">看活動・購票</a>
+        <a class="btn" href="spots.html">規劃參觀路線</a>
+        <a class="btn" href="rental.html">租借場地</a>
+      </div>
+    </div>
+    <a class="hero-credit" id="heroCredit" href="https://www.youtube.com/watch?v=VDBO9sTBm-Y" target="_blank" rel="noopener">▶ 觀看〈臺中放送局空拍記錄〉· 影片來源：YouTube／臺中市文化資產處</a>
+  </div>
+  <div class="visit">
+    <div class="wrap">
+      <div><span class="mono">地址</span><p>臺中市北區電台街 1 號<br>（全台唯一的電台街門牌）</p></div>
+      <div><span class="mono">位置</span><p>水源地文教聚落<br>鄰臺中一中、臺中體育場</p></div>
+      <div><span class="mono">開放時間</span><p>依官方 LINE 公告<br>園區參觀免費</p></div>
+      <div><span class="mono">本季主打</span><p><a href="events.html">週六留聲講唱會<br>每月第三個星期六</a></p></div>
+    </div>
+  </div>
+  </section><section class="sec block " id="about"><div class="wrap"><div class="manifesto">
+      <div>
+        <p class="eyebrow" style="margin-bottom:18px"><span class="lamp"></span>品牌定位</p>
+        <blockquote>這裡不只保存一棟老房子，<br>而是讓<mark>聲音</mark>重新住進來：<br>台中的音樂文化樞紐。</blockquote>
+      </div>
+      <div class="body">
+        <p>臺中放送局是全台第三座廣播電台，也是中部大眾傳播的起點。從日治時期的二重放送、戰後中廣的黃昏講古，到校園民歌陪伴的青春，這裡記得每一個世代的聲音。</p>
+        <p>2026 年起，愛維藝文以「臺中市音樂文化中心」為願景，把展覽、現場音樂、講唱、教育、Café 與市集串成一條完整的聆聽路線。你可以只是來散步拍照，也可以每個月回來聽一場。</p>
+        <p class="mono" style="color:var(--ink)">Music · Public · Engagement</p>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><span class="k">Heritage</span><h3>歷史建築</h3><p>昭和折衷主義洋樓，94 扇窗、近 10 種窗型，2002 年登錄為臺中市歷史建築。</p></div>
+      <div class="pillar"><span class="k">Broadcasting</span><h3>廣播歷史</h3><p>JFCK 台中放送局到中廣臺灣台，九十年電波記憶就是我們的節目原點。</p></div>
+      <div class="pillar"><span class="k">Live Music</span><h3>現場音樂</h3><p>四季主題音樂會、每月週六講唱會、爵士音樂會。把「用聽的廣播」變成你能坐進去的現場。</p></div>
+    </div>
+  </div></section><section class="sec block alt" id="explore"><div class="wrap"><div class="blk-h"><p class="eyebrow"><span class="lamp"></span>選台</p><h2>今天想聽哪一台？</h2><p>參觀、聽音樂、加入會員或租場地，從這裡開始。</p></div><div class="explore"><a class="xcard first" href="spots.html"><div class="ph"><img src="assets/img/hall-arched-windows.jpg" alt="十大打卡點" loading="lazy"></div><div class="lab"><h3>十大打卡點</h3><span class="go">TUNE IN →</span></div><p>94 扇窗的光影、日池月池倒影、ON AIR 播音室，附構圖與姿勢示範。</p></a><a class="xcard " href="history.html"><div class="ph"><img src="assets/img/facade-side.jpg" alt="場館歷史" loading="lazy"></div><div class="lab"><h3>場館歷史</h3><span class="go">TUNE IN →</span></div><p>全台第三座放送局，從 JFCK 到中廣臺灣台的九十年。</p></a><a class="xcard " href="spaces.html"><div class="ph"><img src="assets/img/performance-hall.jpg" alt="空間介紹" loading="lazy"></div><div class="lab"><h3>空間介紹</h3><span class="go">TUNE IN →</span></div><p>室內導覽影片與 1F、2F、全區平面圖。</p></a><a class="xcard " href="events.html"><div class="ph"><img src="assets/img/iron-gate.jpg" alt="系列活動・購票" loading="lazy"></div><div class="lab"><h3>系列活動・購票</h3><span class="go">TUNE IN →</span></div><p>週六留聲講唱會、四季主題音樂會，線上選位購票。</p></a><a class="xcard " href="club.html"><div class="ph"><img src="assets/img/cypress-path.jpg" alt="Radio One Club" loading="lazy"></div><div class="lab"><h3>Radio One Club</h3><span class="go">TUNE IN →</span></div><p>免費加入就有 95 折，集十張票送一張。</p></a><a class="xcard " href="rental.html"><div class="ph"><img src="assets/img/courtyard-pond.jpg" alt="租借場地" loading="lazy"></div><div class="lab"><h3>租借場地</h3><span class="go">TUNE IN →</span></div><p>80 席室內到 500 人庭園，售票演出可零租金拆帳。</p></a></div></div></section><section class="sec block " id="next"><div class="wrap"><div class="blk-h"><p class="eyebrow"><span class="lamp"></span>近期節目</p><h2>放送開咪：週六留聲講唱會</h2><p>每月第三個星期六，15:00 日光茶敘場與 19:30 微光夜話場。</p></div><div class="upnext" id="upNext"></div><p style="margin-top:28px"><a class="btn" href="events.html">看全部 15 場</a></p></div></section></main><nav class="pager" aria-label="上一頁與下一頁"><div class="wrap"><span></span><a class="next" href="spots.html"><span class="mono">下一台 →</span><b>打卡點</b></a></div></nav><footer>
+  <div class="wrap">
+    <div class="brand"><b>Radio One<br><i>On Air</i></b><p>臺中放送局・中部人近百年來耳朵甦醒的地方<br>臺中市北區電台街 1 號</p></div>
+    <div><h4>參觀</h4><ul><li><a href="spots.html">十大打卡點</a></li><li><a href="history.html">場館歷史</a></li><li><a href="spaces.html">空間介紹</a></li></ul></div>
+    <div><h4>參加</h4><ul><li><a href="events.html">系列活動・購票</a></li><li><a href="club.html">Radio One Club</a></li><li><a href="archive.html">活動紀錄</a></li></ul></div>
+    <div><h4>合作</h4><ul><li><a href="rental.html">租借場地</a></li><li><a href="rental.html#calc-sec">票房拆潤專案</a></li><li><a href="rental.html#enquiry">預約諮詢</a></li></ul></div>
+    <p class="fine">歷史建築臺中放送局 · 主管機關：臺中市文化資產處 · 營運單位：愛維藝文有限公司｜嵌入影片版權屬各 YouTube 上傳者｜平面圖：明室設計事務所</p>
+  </div>
+</footer><script src="assets/site.js"></script>
+</body>
+</html>

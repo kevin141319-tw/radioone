@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>空間介紹｜Radio One On Air</title>
+<meta name="description" content="臺中放送局 Radio One On Air：中部人近百年來耳朵甦醒的地方。參觀、打卡、音樂會購票、會員與場地租借。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="hdr" id="top">
+  <div class="wrap">
+    <div class="hdr-row">
+      <a class="logo" href="index.html"><b>Radio One</b><i>On Air</i><small>臺中放送局</small></a>
+      <div class="hdr-cta">
+        <span class="onair" aria-label="現正放送">ON AIR</span>
+        <a class="btn small solid" href="events.html">購票</a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">選台</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <nav class="dial" aria-label="網站導覽">
+      <div class="dial-scale"></div>
+      <ol id="dialList"><li><a href="index.html">首頁</a></li><li><a href="spots.html">打卡點</a></li><li><a href="history.html">場館歷史</a></li><li><a href="spaces.html" aria-current="page">空間介紹</a></li><li><a href="archive.html">活動紀錄</a></li><li><a href="events.html">系列活動・購票</a></li><li><a href="club.html">Radio One Club</a></li><li><a href="rental.html">租借場地</a></li></ol>
+      <div class="dial-now"><span class="mono">TUNED</span><b>空間介紹</b></div>
+      <div class="needle" id="needle"></div>
+    </nav>
+  </div>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <button class="btn small close" id="drawerClose">關閉</button>
+  <a href="index.html">首頁 <span>Home</span></a><a href="spots.html">打卡點 <span>Photo Spots</span></a><a href="history.html">場館歷史 <span>History</span></a><a href="spaces.html" aria-current="page">空間介紹 <span>Spaces</span></a><a href="archive.html">活動紀錄 <span>Archive</span></a><a href="events.html">系列活動・購票 <span>Events & Tickets</span></a><a href="club.html">Radio One Club <span>Membership</span></a><a href="rental.html">租借場地 <span>Venue Hire</span></a>
+</div>
+<main><section class="page-hero"><img src="assets/img/performance-hall.jpg" alt="多功能展演空間"><div class="wrap">
+<p class="eyebrow"><span class="lamp"></span>04 · 空間介紹</p><h1>一樓聽音樂，二樓喝咖啡，<br>庭園裡吹晚風</h1><p class="en">Spaces & Floor Plans</p><p class="lead">主建築兩層樓，加上老榕樹環繞的綠意庭園。參觀或租借前，先用影片和平面圖認識它。</p></div></section><nav class="subnav" aria-label="本頁章節"><div class="wrap"><a href="#tour">室內導覽</a><a href="#plans">平面圖</a><a href="#rooms">主要空間</a></div></nav><section class="sec block " id="tour"><div class="wrap"><div class="tour" style="margin-bottom:0">
+      <a class="vid" data-yt="ZjPQPYGkABw" data-poster="assets/img/performance-hall.jpg" href="https://www.youtube.com/watch?v=ZjPQPYGkABw" target="_blank" rel="noopener" aria-label="播放室內導覽影片〈台中放送局 4k〉"></a>
+      <div style="display:grid;gap:14px">
+        <p class="mono" style="color:var(--onair)">室內導覽</p>
+        <h3 style="font-family:var(--f-zh-display);font-size:1.6rem;line-height:1.3">跟著鏡頭，從玄關走進 1935 年的錄音室</h3>
+        <p style="color:var(--ink-2)">洗石子地板、深色木框窗、圓弧樓梯間，4K 畫面帶你先逛一圈。</p>
+        <p class="note">影片來源：YouTube／劉漢順〈台中放送局 4k〉</p>
+      </div>
+    </div>
+
+    </div></section><section class="sec block alt" id="plans"><div class="wrap"><div class="blk-h"><p class="eyebrow"><span class="lamp"></span>平面圖</p><h2>三張圖，看懂整座放送局</h2><p>點圖可放大。顏色對照右側空間說明。</p></div><div class="plan-box">
+      <div class="plan-view">
+        <div class="row">
+          <div class="tabs" role="tablist" id="planTabs">
+            <button class="tab" role="tab" aria-selected="true" data-plan="site">全區</button>
+            <button class="tab" role="tab" aria-selected="false" data-plan="1F">1F</button>
+            <button class="tab" role="tab" aria-selected="false" data-plan="2F">2F</button>
+          </div>
+          <span class="note">點圖放大 · 圖面：明室設計事務所</span>
+        </div>
+        <img id="planImg" src="assets/plan/plan-site.png" alt="臺中放送局 1F 全區平面圖，含主建築與東側庭園">
+      </div>
+      <div>
+        <p class="mono" style="color:var(--ink-2);margin-bottom:8px" id="planLabel">全區配置 · 主建築＋東側庭園</p>
+        <ul class="legend" id="legend"></ul>
+      </div>
+    </div>
+
+    </div></section><section class="sec block " id="rooms"><div class="wrap"><div class="blk-h"><p class="eyebrow"><span class="lamp"></span>主要空間</p><h2>走進來，你會經過這些地方</h2></div><div class="space-cards" id="spaceCards"></div><p style="margin-top:32px"><a class="btn" href="rental.html">了解場地租借</a></p></div></section><dialog id="planDlg" aria-label="平面圖放大">
+  <button class="dlg-close" data-close aria-label="關閉">✕</button>
+  <img class="zoom-img" id="planZoom" alt="">
+</dialog></main><nav class="pager" aria-label="上一頁與下一頁"><div class="wrap"><a class="prev" href="history.html"><span class="mono">← 上一台</span><b>場館歷史</b></a><a class="next" href="archive.html"><span class="mono">下一台 →</span><b>活動紀錄</b></a></div></nav><footer>
+  <div class="wrap">
+    <div class="brand"><b>Radio One<br><i>On Air</i></b><p>臺中放送局・中部人近百年來耳朵甦醒的地方<br>臺中市北區電台街 1 號</p></div>
+    <div><h4>參觀</h4><ul><li><a href="spots.html">十大打卡點</a></li><li><a href="history.html">場館歷史</a></li><li><a href="spaces.html">空間介紹</a></li></ul></div>
+    <div><h4>參加</h4><ul><li><a href="events.html">系列活動・購票</a></li><li><a href="club.html">Radio One Club</a></li><li><a href="archive.html">活動紀錄</a></li></ul></div>
+    <div><h4>合作</h4><ul><li><a href="rental.html">租借場地</a></li><li><a href="rental.html#calc-sec">票房拆潤專案</a></li><li><a href="rental.html#enquiry">預約諮詢</a></li></ul></div>
+    <p class="fine">歷史建築臺中放送局 · 主管機關：臺中市文化資產處 · 營運單位：愛維藝文有限公司｜嵌入影片版權屬各 YouTube 上傳者｜平面圖：明室設計事務所</p>
+  </div>
+</footer><script src="assets/site.js"></script>
+</body>
+</html>
