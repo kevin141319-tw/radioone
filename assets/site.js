@@ -51,41 +51,34 @@ function enableEmbeds(){
 }
 
 /* ---------- SPOTS ---------- */
-const svgArt={
- onair:`<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="構圖示意：ON AIR 燈箱與復古麥克風"><rect width="300" height="400" fill="#1A120C"/><radialGradient id="g1" cx=".5" cy=".3" r=".6"><stop offset="0" stop-color="#6B3A1E" stop-opacity=".7"/><stop offset="1" stop-color="#1A120C" stop-opacity="0"/></radialGradient><rect width="300" height="400" fill="url(#g1)"/><rect x="88" y="54" width="124" height="44" rx="6" fill="#B6311D"/><rect x="88" y="54" width="124" height="44" rx="6" fill="none" stroke="#FF8A6B" stroke-opacity=".6"/><text x="150" y="84" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="22" fill="#FFF1E6" letter-spacing="4">ON AIR</text><rect x="128" y="190" width="44" height="78" rx="22" fill="#8C8C86"/><g stroke="#5E5E58" stroke-width="2">${Array.from({length:7},(_,i)=>`<line x1="132" x2="168" y1="${202+i*9}" y2="${202+i*9}"/>`).join('')}</g><rect x="146" y="268" width="8" height="60" fill="#6E6E68"/><rect x="104" y="328" width="92" height="12" rx="3" fill="#4A3020"/><rect x="0" y="340" width="300" height="60" fill="#3A2416"/></svg>`,
- shelter:`<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="構圖示意：從防空洞口向外拍的框中框"><rect width="300" height="400" fill="#0E0D0B"/><path d="M60 400 V190 A90 90 0 0 1 240 190 V400 Z" fill="#7FA36A"/><path d="M60 400 V190 A90 90 0 0 1 240 190 V400 Z" fill="url(#sky)"/><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9EFD9"/><stop offset=".55" stop-color="#A8C38D" stop-opacity=".2"/></linearGradient><path d="M150 400 v-96 m0 0 c-14 0 -16 -22 0 -24 c16 2 14 24 0 24" stroke="#1C1A15" stroke-width="16" stroke-linecap="round" fill="#1C1A15"/><path d="M40 0 C70 60 30 120 64 190" stroke="#2F4A26" stroke-width="5" fill="none"/><path d="M260 20 C230 80 270 130 236 190" stroke="#2F4A26" stroke-width="5" fill="none"/></svg>`,
- stairs:`<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="構圖示意：由上往下俯拍弧形樓梯"><rect width="300" height="400" fill="#E9E1D0"/>${Array.from({length:12},(_,i)=>{const r=150-i*11;return `<path d="M${150-r} 220 A${r} ${r*0.9} 0 0 1 ${150+r} 220" fill="none" stroke="${i%2?'#B8AC96':'#8B6A4E'}" stroke-width="${i%2?3:7}"/>`}).join('')}<rect x="200" y="20" width="40" height="120" fill="#F7F2E6" stroke="#5A3A24" stroke-width="5"/><circle cx="168" cy="260" r="11" fill="#2A1C12"/><path d="M168 271 l-12 52 h24 z" fill="#2A1C12"/></svg>`,
- vinyl:`<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="構圖示意：黑膠唱片與收音機刻度盤特寫"><rect width="300" height="400" fill="#3A2214"/><rect x="0" y="0" width="300" height="400" fill="#C9822F" opacity=".18"/><g>${[60,140,220].map(x=>`<rect x="${x-34}" y="40" width="68" height="68" fill="#D9B98A" opacity=".55"/>`).join('')}</g><circle cx="150" cy="250" r="110" fill="#111"/>${Array.from({length:9},(_,i)=>`<circle cx="150" cy="250" r="${100-i*7}" fill="none" stroke="#2A2A2A" stroke-width="1.5"/>`).join('')}<circle cx="150" cy="250" r="34" fill="#B6311D"/><circle cx="150" cy="250" r="4" fill="#111"/><rect x="20" y="350" width="260" height="34" rx="4" fill="#E9D59F"/><g stroke="#3A2214">${Array.from({length:24},(_,i)=>`<line x1="${32+i*10}" x2="${32+i*10}" y1="356" y2="${i%4?364:370}"/>`).join('')}</g><line x1="172" x2="172" y1="352" y2="382" stroke="#B6311D" stroke-width="2.5"/></svg>`
-};
 const spots=[
- {t:'全台唯一門牌：電台街 1 號',tag:'入門儀式',img:'iron-gate',sub:'整條電台街只有這一個門牌',see:'綠蔭蔥蘢的電台街，只有一個門牌號碼：電台街 1 號。這是台中廣播歷史的起點，也是全台絕無僅有的路名。',comp:'中景或直式微仰角。門牌放在畫面右上或左上三分之一處，背景帶出林蔭與主建築一角。',pose:'側身站立，手輕指門牌或單手插口袋回眸；也可以拿著外帶咖啡、耳機掛在頸間，像初次探訪電波秘密基地的旅人。',mood:['濾鏡','自然光、微暖色調，突顯綠蔭與米黃牆面的對比。']},
- {t:'94 扇窗之冠：圓拱窗光影走廊',tag:'昭和摩登',img:'hall-arched-windows',sub:'午後光影像琴鍵一樣落在地上',see:'放送局最驕傲的象徵。羅馬式圓拱木窗在午後被陽光穿透，在地板與洗石子牆上映出如琴鍵般的影子。',comp:'室內側光順光拍攝。利用連續拱窗形成透視對角線，人物置於光影最斑斕的窗框中央。',pose:'坐在窗台邊捧著書或茶，望向窗外老榕；或側身倚靠窗框，讓午後 45 度光勾勒臉部輪廓。',mood:['濾鏡','日系空氣感、低飽和微顆粒，像走進岩井俊二的電影。']},
- {t:'正門菱格紋女兒牆與外觀全景',tag:'建築門面',img:'facade-canopy',sub:'最經典的辨識標誌',see:'二樓陽台女兒牆上的立體菱格紋飾（Art Deco 風格），配上淡黃外牆與仿羅馬式拱門玄關。',comp:'退到前庭走道正中央，對稱置中構圖，收進完整兩層洋樓與拱門門廊。',pose:'站在一樓拱門下，背對鏡頭前行再回眸；或雙人牽手置中，像造訪歐洲莊園。',mood:['濾鏡','16:9 電影寬螢幕，帶底片感的溫潤復古調。']},
- {t:'水波倒影：戶外日池與月池',tag:'水鏡倒影',img:'courtyard-pond',sub:'無風時能倒映整棟洋樓',see:'主建築正前方的圓形水池，早年依園林設計分為日池與月池，池水平靜時完整倒映鵝黃色建築。',comp:'超低角度貼近水面。水面當中線，上方實景、下方倒影。',pose:'蹲坐池畔石欄旁，側頭看漣漪；情侶可分立池邊兩側相視而笑，讓倒影形成對稱。',mood:['最佳時間','清晨無風，或傍晚夕陽時水面金光粼粼。']},
- {t:'謎樣石燈籠',tag:'日式庭園',img:'lantern-path',sub:'刻字相差 12 年的文史彩蛋',see:'庭園後方的日式石燈籠，柱身刻有「大正 7 年創建」與「昭和 5 年」字樣，兩段年代相差 12 年。',comp:'石燈籠當前景、大光圈虛化，人物站在後方小徑；或半身日式庭園特寫。',pose:'雙手合十微躬，或穿復古洋裝、襯衫配貝雷帽，輕撫一旁古木，專注看燈柱刻字。',mood:['濾鏡','幽靜冷綠、日式侘寂底片感。']},
- {t:'電波心臟：On Air 播音室角落',tag:'廣播職人',svg:'onair',sub:'一秒變身深夜電台 DJ',see:'室內展區保留廣播時代意象：復古麥克風、真空管收音機與紅色 ON AIR 燈箱。',comp:'中特寫。聚焦播音台與金屬麥克風，背景帶到亮起的 ON AIR 字樣。',pose:'戴上耳罩式耳機，單手扶麥克風、另一手在桌上比畫，嘴型微張像正在開咪。',mood:['濾鏡','暖黃鎢絲燈、暗調發燒氛圍。']},
- {t:'歲月足跡：防空洞與綠藤秘境',tag:'秘境探險',svg:'shelter',sub:'二戰留下的圓拱防空洞',see:'園區後方二戰時期的圓拱防空洞，厚實結構外爬滿常春藤與老樹氣根。',comp:'從洞口內側往外拍，框中框構圖。幽暗洞口當相框，把陽光與人物框在中央。',pose:'站在明暗交界，讓陽光打出髮絲輪廓光，側身跨步，像走出歷史、走向光。',mood:['濾鏡','高對比黑白，或帶墨綠的膠捲顆粒。']},
- {t:'老榕樹下的木長椅',tag:'慢活午後',img:'banyan-path',sub:'當年廣播員放空的角落',see:'側院老榕樹遮天蔽日，樹蔭下的深木色長椅，是當年廣播員休息的地方，也是今天最愜意的角落。',comp:'水平三分法，帶出頂部樹蔭灑下的光斑。',pose:'靠坐長椅、一腳微翹，拿著 Café 冷萃茶或黑膠封套，放鬆望向草地。',mood:['濾鏡','明亮暖綠、斑駁陽光的清新感。']},
- {t:'幾何木質旋轉樓梯轉角',tag:'線條美學',svg:'stairs',sub:'洗石子階梯與老木扶手',see:'通往二樓的梯間，保留洗石子階梯、老木扶手與挑高牆面的長條平拱窗。',comp:'從樓梯頂部俯拍階梯弧線；或由下往上仰拍，讓人物與扶手延伸線融為一體。',pose:'停在轉折處，單手扶老木扶手，側臉仰望窗光；長裙或風衣自然垂墜。',mood:['濾鏡','復古深棕木質調，強調明暗層次。']},
- {t:'黑膠與骨董收音機展示牆',tag:'老派靈魂',svg:'vinyl',sub:'1930 年代以降的聲音容器',see:'室內展演區陳列各年代真空管收音機、卡帶隨身聽，以及蟲膠與黑膠唱片。',comp:'近景特寫。收音機刻度盤或黑膠封面當主體，人物虛化在背景。',pose:'雙手捧黑膠端詳，或輕轉收音機頻率旋鈕，眼神帶著好奇與溫柔。',mood:['濾鏡','濃郁復古暖橙（Vintage Sepia），像老雜誌內頁插圖。']}
+ ['電台街壹號','初遇電波處','全台灣唯一以「電台街」命名的街道，且整條街只有「1號」這一個門牌號碼。這是 1935 年台灣中部廣播文明啟蒙的起點，在此打卡象徵拿到穿越百年時空的電波通行證，具備不可替代的文史坐標意義。'],
+ ['昭和之扉','莊園鐵花門','融合和洋折衷風格的古典鑄鐵雕花大門，繁複對稱的鐵花線條自帶昭和摩登的歐洲莊園儀式感。這裡是昔日放送官員與文化名流進出的門戶，在此拍照能捕捉推開時空之門、步入歷史迴廊的起點意象。'],
+ ['水波鏡影','日池倒映樓','放送局庭園前方的圓形日池，是園區內拍攝建築倒影的絕佳秘境。平靜的水面能完整鏡射出折衷主義洋樓的圓弧塔樓、羅馬拱圈與天空雲彩，捕捉建築虛實相映的靈動之美。'],
+ ['暖陽斜憩','菱紋洋樓壁','此處集中了台中放送局最精華的建築語彙：二樓陽台洗石子女兒牆上的幾何裝飾、一樓對稱的圓拱木窗，以及粗獷質感的鵝黃色洗石子外牆。在此打卡能拍出宛如身處 1930 年代古典洋館的精緻立面全貌。'],
+ ['歲月刻痕','大正石燈籠','靜矗於庭園綠蔭中的古樸日式石燈籠，柱身銘刻著「大正七年」與「昭和五年」相差 12 年的神秘紀年，是放送局內保存最完整、最耐人尋味的日治時期文史彩蛋。在此取景能呈現和風古意與歷史沉積感。'],
+ ['時光哨所','老派衛哨亭','全台歷史建築中極為少見的洗石子單人衛哨亭，見證了早年廣播電台作為重要國家設施的管制歷史。小巧方正的建築構造與高台階梯，是全區拍出「老派職人感」與「私房秘密基地感」的最佳取景點。'],
+ ['森徑微光','隱蔽防空洞','二戰時期留存至今的水泥圓拱防空洞，外覆土丘並長滿茂密樹根與綠植。這是園區內最具神秘感與時空張力的遺構，打卡能展現穿梭於戰爭歲月與自然共生之間的荒野秘境感。'],
+ ['窗景如琴','雙聯木拱櫺','台中放送局擁有傲視全台歷史建築的「94 扇窗」，其中這組雙聯大圓拱木窗更是室內精華。深褐色木質拱櫺如畫框般將窗外翠綠樹冠完整收攬入室，是感受老建築呼吸感與靜態採光的必訪點。'],
+ ['迴廊光影','轉角螺旋階','通往二樓的梯間擁有磨石子弧形階梯、溫潤木扶手以及挑高立面上的圓拱採光長窗。窗外光線灑落時會在樓梯間形成流動的幾何陰影，是展現老建築立體空間感與動態透視的核心拍照點。'],
+ ['遠眺浮雲','城垛望樓台','二樓戶外陽台結合了圓塔造型、宛如歐式城堡的頂部城垛，以及洗石子雕花圍欄。站在這裡可以俯瞰電台街與水源地的綠林景致，是全館視野最開闊、最能感受藍天與歷史建築頂部細節的制高打卡點。']
 ];
-const spotMedia=(s,big)=>s.img?`<img src="assets/img/${s.img}.jpg" alt="${esc(s.t)}示範照" loading="lazy">`:svgArt[s.svg]+(big?'<span class="ph-note">構圖示意圖 · 實景示範照拍攝中</span>':'');
+const spotImg=(i,s)=>`<img src="assets/img/spot-${String(i+1).padStart(2,'0')}.jpg" alt="${esc(s[0]+'：'+s[1])}示範打卡照" loading="lazy">`;
 if($('#spotGrid')){
-$('#spotGrid').innerHTML=spots.map((s,i)=>`<button class="spot" data-i="${i}" aria-haspopup="dialog"><div class="ph">${spotMedia(s)}<span class="no">${String(i+1).padStart(2,'0')}</span><span class="tag">${esc(s.tag)}</span></div><h3>${esc(s.t)}</h3><p>${esc(s.sub)}</p></button>`).join('');
+$('#spotGrid').innerHTML=spots.map((s,i)=>`<button class="spot" data-i="${i}" aria-haspopup="dialog"><div class="ph">${spotImg(i,s)}<span class="no">${String(i+1).padStart(2,'0')}</span></div><h3>${esc(s[0])}：${esc(s[1])}</h3></button>`).join('');
 $('#spotGrid').addEventListener('click',e=>{const b=e.target.closest('.spot');if(!b)return;openSpot(+b.dataset.i)});
 function openSpot(i){
   const s=spots[i];
-  $('#spotBody').innerHTML=`<div class="ph">${spotMedia(s,true)}<div class="thirds off" id="thirds"></div></div>
-  <div class="txt"><p class="eyebrow"><span class="lamp"></span>打卡點 ${String(i+1).padStart(2,'0')} / 10 · ${esc(s.tag)}</p>
-  <h3 id="spotTitle">${esc(s.t)}</h3><p style="color:var(--ink-2)">${esc(s.see)}</p>
-  <div class="guide"><div><span class="k">構圖視角</span><p>${esc(s.comp)}</p></div><div><span class="k">人物姿勢</span><p>${esc(s.pose)}</p></div><div><span class="k">${esc(s.mood[0])}</span><p>${esc(s.mood[1])}</p></div></div>
+  $('#spotBody').innerHTML=`<div class="ph">${spotImg(i,s)}<div class="thirds off" id="thirds"></div></div>
+  <div class="txt"><p class="eyebrow"><span class="lamp"></span>打卡點 ${String(i+1).padStart(2,'0')} / 10</p>
+  <h3 id="spotTitle">${esc(s[0])}：<br>${esc(s[1])}</h3>
+  <div class="guide"><div><span class="k">特色與<br>必拍價值</span><p>${esc(s[2])}</p></div></div>
   <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn small" type="button" id="thirdsBtn" aria-pressed="false">顯示三分構圖線</button>
   <button class="btn small" type="button" id="nextSpot">下一個打卡點 →</button></div></div>`;
   $('#thirdsBtn').onclick=e=>{const on=$('#thirds').classList.toggle('off');e.target.setAttribute('aria-pressed',String(!on));e.target.textContent=on?'顯示三分構圖線':'隱藏構圖線'};
   $('#nextSpot').onclick=()=>openSpot((i+1)%spots.length);
   const d=$('#spotDlg'); if(!d.open)d.showModal(); d.scrollTop=0;
 }
-
 }
 /* ---------- HISTORY ---------- */
 const tl=[

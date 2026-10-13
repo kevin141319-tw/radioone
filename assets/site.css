@@ -536,3 +536,5 @@ footer .fine{grid-column:1/-1;border-top:1px solid color-mix(in srgb,var(--paper
 .club .passbook .btn:hover{background:#2A1E12;color:#F3EAD2}
 #wall .wall{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 @media (max-width:760px){#wall .wall{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.spot-detail .ph{min-height:min(78vh,640px)}
+@media (max-width:760px){.spot-detail .ph{min-height:0}}
