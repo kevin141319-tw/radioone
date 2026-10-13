@@ -117,9 +117,9 @@ $('#planImg').onclick=()=>{$('#planZoom').src=$('#planImg').src;$('#planZoom').a
 const spaces=[
  {w:1,img:'multi-hall',n:'多功能展演空間',f:'1F · 105＋106',d:'挑高的原木屋架、軌道燈與整排木框長窗，平台鋼琴就位，可排成展覽或 80–120 席演出。四季音樂會與週六講唱會都在這裡。',m:['80–120 席','可租借 A 區','講唱・室內樂']},
  {img:'hall-arched-windows',n:'圓拱窗展間',f:'1F · 103',d:'整面圓拱木窗與赭色天花，午後光線最美。陳列在地品牌選品與文創商品。',m:['文創選品','免費參觀']},
- {img:'courtyard-pond',n:'廣播綠意庭園',f:'戶外 · B 區',d:'圓形廣場、日池月池與石燈籠，夏季戶外音樂會與市集的舞台。',m:['300–500 人','可租借 B 區']},
+ {img:'garden-b',n:'廣播綠意庭園',f:'戶外 · B 區',d:'圓形廣場、日池月池與石燈籠，夏季戶外音樂會與市集的舞台。',m:['300–500 人','可租借 B 區']},
  {img:'cypress-path',n:'柏樹拱廊步道',f:'戶外 · 側院',d:'傾斜的老柏樹搭成綠色隧道，盡頭就是洋樓的拱門。',m:['散步路線','打卡']},
- {img:'facade-side',n:'二樓 Café 與陽台',f:'2F · 202＋207',d:'坐在菱格紋女兒牆後，看老榕與前庭。會員飲品券與生日禮在這裡使用。',m:['Café','陽台座位']}
+ {img:'cafe-balcony',n:'二樓 Café 與陽台',f:'2F · 202＋207',d:'坐在菱格紋女兒牆後，看老榕與前庭。會員飲品券與生日禮在這裡使用。',m:['Café','陽台座位']}
 ];
 if($('#spaceCards')){
 $('#spaceCards').innerHTML=spaces.map(s=>`<article class="space${s.w?' wide':''}"><div class="ph"><img src="assets/img/${s.img}.jpg" alt="${s.n}" loading="lazy"></div><div class="bd"><span class="mono" style="color:var(--onair)">${s.f}</span><h3>${s.n}</h3><p>${s.d}</p><div class="meta">${s.m.map(x=>`<span class="chip">${x}</span>`).join('')}</div></div></article>`).join('');
