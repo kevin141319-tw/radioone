@@ -175,7 +175,7 @@ $('#filters').innerHTML=`<button class="tab" aria-selected="true" data-d="-1">�
 $('#filters').onclick=e=>{const b=e.target.closest('.tab');if(!b)return;dom=+b.dataset.d;$$('#filters .tab').forEach(x=>x.setAttribute('aria-selected',String(x===b)));renderHosts()};
 function renderHosts(){
   $('#hostGrid').innerHTML=hosts.map((h,i)=>({h,i})).filter(({h})=>dom<0||h[4]===dom).map(({h,i})=>`<article class="host">
-   <div class="top"><span class="date">${fmtD(h.date)} 六 · 暫定</span><span class="ep">No.${String(i+1).padStart(2,'0')}</span></div>
+   <div class="top"><span class="date">每月第三個星期六 · 檔期公布中</span><span class="ep">No.${String(i+1).padStart(2,'0')}</span></div>
    <div><h4>${esc(h[0])}</h4><p class="role">${esc(h[1])}</p></div>
    <p class="theme">〈${esc(h[2])}〉</p>
    <blockquote>${esc(h[3])}</blockquote>
@@ -206,7 +206,7 @@ function stepsBar(){return `<div class="steps">${['場次','票種','聯絡資�
 function priceSum(){const r=MEMBER[tk.mem][0];const sub=PRICE*tk.qty;const tot=Math.round(sub*r);return {sub,tot,off:sub-tot}}
 function drawTk(){
   const h=hosts[tk.i];
-  const head=`<p class="eyebrow"><span class="lamp"></span>放送開咪 No.${String(tk.i+1).padStart(2,'0')} · ${fmtD(h.date)}（暫定）</p><h3 id="tkTitle">${esc(h[0])}〈${esc(h[2])}〉</h3>${stepsBar()}`;
+  const head=`<p class="eyebrow"><span class="lamp"></span>放送開咪 No.${String(tk.i+1).padStart(2,'0')} · 檔期公布中</p><h3 id="tkTitle">${esc(h[0])}〈${esc(h[2])}〉</h3>${stepsBar()}`;
   let body='';
   if(tk.step===1){
     body=`<div class="opt-row">${[['day','15:00–16:30','日光茶敘講唱'],['night','19:30–21:00','微光夜話講唱']].map(([v,t,n])=>`<div class="opt"><input type="radio" name="slot" id="slot-${v}" value="${v}" ${tk.slot===v?'checked':''}><label for="slot-${v}"><b>${t}</b><small>${n} · 一般席 ${nt(PRICE)}（暫定）</small></label></div>`).join('')}</div>
@@ -225,7 +225,7 @@ function drawTk(){
     <div class="sum"><div class="total"><span>${tk.slot==='day'?'15:00 日光場':'19:30 夜話場'} · ${tk.qty} 張</span><span>${nt(priceSum().tot)}</span></div></div>
     <div class="tk-actions"><button class="btn" type="button" data-go="2">上一步</button><button class="btn solid" type="submit">確認訂票（示範）</button></div>`;
   }else{
-    const code='JFCK-'+String(fmtD(h.date)).replace(/\./g,'').slice(2)+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
+    const code='JFCK-'+String(tk.i+1).padStart(2,'0')+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
     body=`<div class="ticket-stub"><span class="mono" style="color:var(--onair)">示範訂單 · 未實際扣款</span><span class="code">${code}</span><p><b>${esc(tk.name)}</b>，你的 ${tk.qty} 張〈${esc(h[0])}〉${tk.slot==='day'?'15:00 日光茶敘場':'19:30 微光夜話場'}已保留。</p><p class="note">正式上線後，電子票券將寄至 ${esc(tk.email)}，並同步存入 LINE 會員中心。聽歌存摺＋${tk.qty} 點。</p></div>
     <div class="tk-actions"><a class="btn" href="#club" data-closelink>了解 Radio One Club</a><button class="btn solid" type="button" data-close>完成</button></div>`;
   }
@@ -311,7 +311,7 @@ $('#split').addEventListener('input',split);$('#split').addEventListener('change
 /* ---------- home: up next ---------- */
 if($('#upNext')){
   const now=new Date();
-  $('#upNext').innerHTML=hosts.map((h,i)=>({h,i})).filter(({h})=>h.date>=now).slice(0,3).map(({h,i})=>`<a href="events.html#sat"><span class="d">${fmtD(h.date)} 六 · 暫定 · No.${String(i+1).padStart(2,'0')}</span><b>${esc(h[0])}</b><span>〈${esc(h[2])}〉</span></a>`).join('');
+  $('#upNext').innerHTML=hosts.map((h,i)=>({h,i})).slice(0,3).map(({h,i})=>`<a href="events.html#sat"><span class="d">No.${String(i+1).padStart(2,'0')}</span><b>${esc(h[0])}</b><span>〈${esc(h[2])}〉</span></a>`).join('');
 }
 /* ---------- probe YouTube reachability, then start ---------- */
 if($$('.vid').length||$('#heroVideo')){
