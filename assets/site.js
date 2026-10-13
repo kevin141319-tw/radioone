@@ -191,9 +191,10 @@ const seasons=[
  {s:'Autumn',c:'#E2A95E',n:'秋季篇．流轉與鄉愁',t:'傍晚六點的收音機：台語老歌的人間煙火與療癒',d:'黃昏市場、機車行、工廠線旁，人人守著收音機聽講古、聽點歌。台語歌承載出外人與媽媽們的寂寞與堅韌。',style:'大提琴 × 班多鈕手風琴 × 木吉他 × 講古口白',cast:'講古：台中廣播前輩　演唱：謝銘祐或曹雅雯',moment:'真空管黃光營造復古客廳，麵茶與古早味糕點，終場「全場電波大合唱」。',where:'室內 · 80–120 席'},
  {s:'Winter',c:'#9DB3CF',n:'冬季篇．沉靜與新生',t:'消音室裡的私語：環境聲景、古典極簡與身心歸零',d:'廣播電台的核心是消音錄音室：阻絕喧囂，只留下呼吸與心跳。冬天的放送局，是鬧區裡的心靈庇護所。',style:'台中田野聲景 × 氛圍後搖 × 極簡鋼琴與弦樂',cast:'聲景錄音師採集水源地鳥鳴、台中車站鐘聲；鋼琴林耿農或李欣芸作品編制；人聲徹摩',moment:'「無燈聆聽會」：特定樂章全場熄燈，終場點亮微光蠟燭完成跨年祈願。',where:'室內 · 80–120 席'}
 ];
+function seasonInfo(i){const sm=i===1;return {slots:sm?[['eve','18:00–21:30','夏夜草地野餐場 · 草地區',800]]:[['day','14:30–16:30','午後場 · 一般席',1200],['night','19:30–21:30','夜間場 · 一般席',1200]]}}
 if($('#seasons')){
-$('#seasons').innerHTML=seasons.map((s,i)=>`<article class="season" style="--sc:${s.c}"><span class="s">${s.s} 2027</span><h4>${s.n}<br>〈${s.t}〉</h4><p>${s.d}</p><dl><dt>編制</dt><dd>${s.style}</dd><dt>擬邀卡司</dt><dd>${s.cast}</dd><dt>現場亮點</dt><dd>${s.moment}</dd><dt>場地</dt><dd>${s.where}</dd></dl><button class="btn small" data-notify="${i}">開賣通知我</button></article>`).join('');
-$('#seasons').addEventListener('click',e=>{const b=e.target.closest('[data-notify]');if(b)openNotify(+b.dataset.notify)});
+$('#seasons').innerHTML=seasons.map((s,i)=>`<article class="season" style="--sc:${s.c}"><span class="s">${s.s} 2027 · 檔期公布中</span><h4>${s.n}<br>〈${s.t}〉</h4><p>${s.d}</p><dl><dt>編制</dt><dd>${s.style}</dd><dt>擬邀卡司</dt><dd>${s.cast}</dd><dt>現場亮點</dt><dd>${s.moment}</dd><dt>場地</dt><dd>${s.where}</dd></dl><div class="season-foot"><span class="price">${nt(seasonInfo(i).slots[0][3])} 起</span><button class="btn small solid" data-sbuy="${i}">選擇場次</button></div></article>`).join('');
+$('#seasons').addEventListener('click',e=>{const b=e.target.closest('[data-sbuy]');if(b)openTicket(+b.dataset.sbuy,'season')});
 
 }
 /* ticket flow */
@@ -201,32 +202,35 @@ const tk={};
 if($('#tkDlg')){
 const tkDlg=$('#tkDlg'), tkForm=$('#tkForm');
 const MEMBER={none:[1,'非會員'],friend:[.95,'留聲之友 95 折'],gold:[.85,'金咪會員 85 折']};
-function openTicket(i){Object.assign(tk,{i,step:1,slot:'day',qty:2,mem:'none',name:'',email:'',phone:''});drawTk();tkDlg.showModal()}
+function openTicket(i,kind){kind=kind||'host';Object.assign(tk,{i,kind,step:1,slot:evInfo(kind,i).slots[0][0],qty:2,mem:'none',name:'',email:'',phone:''});drawTk();tkDlg.showModal()}
 function stepsBar(){return `<div class="steps">${['場次','票種','聯絡資訊','完成'].map((s,k)=>`<span class="${k+1===tk.step?'on':''}">${k+1} ${s}</span>`).join('')}</div>`}
-function priceSum(){const r=MEMBER[tk.mem][0];const sub=PRICE*tk.qty;const tot=Math.round(sub*r);return {sub,tot,off:sub-tot}}
+function evInfo(kind,i){if(kind==='season'){const x=seasons[i];return {label:`電波留聲 ${x.s} 2027 · 檔期公布中`,name:x.n,title:x.t,aud:x.where,slots:seasonInfo(i).slots,letter:false,code:'S'+(i+1)}}const h=hosts[i];return {label:`放送開咪 No.${String(i+1).padStart(2,'0')} · 檔期公布中`,name:h[0],title:h[2],aud:'適合對象：'+h[5],slots:[['day','15:00–16:30','日光茶敘講唱',PRICE],['night','19:30–21:00','微光夜話講唱',PRICE]],letter:i===4,code:String(i+1).padStart(2,'0')}}
+function curEv(){return evInfo(tk.kind,tk.i)}
+function curSlot(){const E=curEv();return E.slots.find(x=>x[0]===tk.slot)||E.slots[0]}
+function priceSum(){const r=MEMBER[tk.mem][0];const sub=curSlot()[3]*tk.qty;const tot=Math.round(sub*r);return {sub,tot,off:sub-tot}}
 function drawTk(){
-  const h=hosts[tk.i];
-  const head=`<p class="eyebrow"><span class="lamp"></span>放送開咪 No.${String(tk.i+1).padStart(2,'0')} · 檔期公布中</p><h3 id="tkTitle">${esc(h[0])}〈${esc(h[2])}〉</h3>${stepsBar()}`;
+  const E=curEv(), S=curSlot();
+  const head=`<p class="eyebrow"><span class="lamp"></span>${E.label}</p><h3 id="tkTitle">${esc(E.name)}〈${esc(E.title)}〉</h3>${stepsBar()}`;
   let body='';
   if(tk.step===1){
-    body=`<div class="opt-row">${[['day','15:00–16:30','日光茶敘講唱'],['night','19:30–21:00','微光夜話講唱']].map(([v,t,n])=>`<div class="opt"><input type="radio" name="slot" id="slot-${v}" value="${v}" ${tk.slot===v?'checked':''}><label for="slot-${v}"><b>${t}</b><small>${n} · 一般席 ${nt(PRICE)}（暫定）</small></label></div>`).join('')}</div>
-    <p class="note">適合對象：${esc(h[5])}</p>
+    body=`<div class="opt-row">${E.slots.map(([v,t,n,pr])=>`<div class="opt"><input type="radio" name="slot" id="slot-${v}" value="${v}" ${tk.slot===v?'checked':''}><label for="slot-${v}"><b>${t}</b><small>${n} ${nt(pr)}（暫定）</small></label></div>`).join('')}</div>
+    <p class="note">${esc(E.aud)}</p>
     <div class="tk-actions"><span></span><button class="btn solid" type="button" data-go="2">下一步</button></div>`;
   }else if(tk.step===2){
     const p=priceSum();
     body=`<div class="field"><label>會員身分</label><div class="opt-row">${Object.entries(MEMBER).map(([k,[r,n]])=>`<div class="opt"><input type="radio" name="mem" id="mem-${k}" value="${k}" ${tk.mem===k?'checked':''}><label for="mem-${k}"><b>${n}</b><small>${k==='gold'?'每場限購 4 張':k==='friend'?'LINE 免費加入':'可於下方加入會員'}</small></label></div>`).join('')}</div></div>
     <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span class="field" style="display:inline"><label>張數</label></span><div class="qty"><button type="button" data-q="-1" aria-label="減少">−</button><output id="qtyOut">${tk.qty}</output><button type="button" data-q="1" aria-label="增加">＋</button></div><span class="note">每筆最多 4 張</span></div>
-    <div class="sum"><div><span>一般席 ${nt(PRICE)} × ${tk.qty}</span><span>${nt(p.sub)}</span></div><div><span>${MEMBER[tk.mem][1]}</span><span>−${nt(p.off)}</span></div><div class="total"><span>合計</span><span>${nt(p.tot)}</span></div><div><span>LIVE ON AIR 存摺</span><span>＋${tk.qty} 點</span></div></div>
+    <div class="sum"><div><span>${esc(S[2])} ${nt(S[3])} × ${tk.qty}</span><span>${nt(p.sub)}</span></div><div><span>${MEMBER[tk.mem][1]}</span><span>−${nt(p.off)}</span></div><div class="total"><span>合計</span><span>${nt(p.tot)}</span></div><div><span>LIVE ON AIR 存摺</span><span>＋${tk.qty} 點</span></div></div>
     <div class="tk-actions"><button class="btn" type="button" data-go="1">上一步</button><button class="btn solid" type="button" data-go="3">下一步</button></div>`;
   }else if(tk.step===3){
     body=`<div class="fields"><div class="field"><label for="tkName">姓名</label><input id="tkName" required value="${esc(tk.name)}" autocomplete="name"></div><div class="field"><label for="tkEmail">Email</label><input id="tkEmail" type="email" required value="${esc(tk.email)}" autocomplete="email"></div><div class="field"><label for="tkPhone">手機</label><input id="tkPhone" required value="${esc(tk.phone)}" inputmode="tel" autocomplete="tel"></div></div>
-    ${tk.i===4?'<div class="field"><label for="tkLetter">未寄出的信（選填，建恆哥可能在現場唸出）</label><textarea id="tkLetter" rows="3"></textarea></div>':''}
+    ${E.letter?'<div class="field"><label for="tkLetter">未寄出的信（選填，建恆哥可能在現場唸出）</label><textarea id="tkLetter" rows="3"></textarea></div>':''}
     <p class="note" id="tkErr" role="alert"></p>
-    <div class="sum"><div class="total"><span>${tk.slot==='day'?'15:00 日光場':'19:30 夜話場'} · ${tk.qty} 張</span><span>${nt(priceSum().tot)}</span></div></div>
+    <div class="sum"><div class="total"><span>${S[1]} · ${tk.qty} 張</span><span>${nt(priceSum().tot)}</span></div></div>
     <div class="tk-actions"><button class="btn" type="button" data-go="2">上一步</button><button class="btn solid" type="submit">確認訂票（示範）</button></div>`;
   }else{
-    const code='JFCK-'+String(tk.i+1).padStart(2,'0')+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
-    body=`<div class="ticket-stub"><span class="mono" style="color:var(--onair)">示範訂單 · 未實際扣款</span><span class="code">${code}</span><p><b>${esc(tk.name)}</b>，你的 ${tk.qty} 張〈${esc(h[0])}〉${tk.slot==='day'?'15:00 日光茶敘場':'19:30 微光夜話場'}已保留。</p><p class="note">正式上線後，電子票券將寄至 ${esc(tk.email)}，並同步存入 LINE 會員中心。LIVE ON AIR 存摺＋${tk.qty} 點。</p></div>
+    const code='JFCK-'+E.code+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
+    body=`<div class="ticket-stub"><span class="mono" style="color:var(--onair)">示範訂單 · 未實際扣款</span><span class="code">${code}</span><p><b>${esc(tk.name)}</b>，你的 ${tk.qty} 張〈${esc(E.name)}〉${S[1]}（${esc(S[2].split(' · ')[0])}）已保留。</p><p class="note">正式上線後，電子票券將寄至 ${esc(tk.email)}，並同步存入 LINE 會員中心。LIVE ON AIR 存摺＋${tk.qty} 點。</p></div>
     <div class="tk-actions"><a class="btn" href="#club" data-closelink>了解 Radio One Club</a><button class="btn solid" type="button" data-close>完成</button></div>`;
   }
   tkForm.innerHTML=head+body;

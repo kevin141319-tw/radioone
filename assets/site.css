@@ -597,3 +597,7 @@ footer .fine{grid-column:1/-1;border-top:1px solid color-mix(in srgb,var(--paper
 .piano-hero .lead{max-width:22em}
 }
 .tier-card{aspect-ratio:19/10;object-fit:cover;display:block}
+.season-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding-top:12px;margin-top:auto;border-top:1px solid rgba(239,231,214,.18)}
+.season-foot .price{font-family:var(--f-mono);font-size:.85rem;color:var(--on-night)}
+.season .btn.solid{border-color:var(--onair);color:#FFF8EE}
+.seasons .season{display:flex;flex-direction:column}
