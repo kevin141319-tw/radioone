@@ -619,3 +619,6 @@ footer .fine{grid-column:1/-1;border-top:1px solid color-mix(in srgb,var(--paper
 @media (max-width:640px){.f-item{grid-template-columns:56px minmax(0,1fr)}.f-item img{width:56px;height:70px}.f-item .btn{grid-column:2;justify-self:start}}
 .f-empty{display:grid;gap:4px;padding:18px;border:1px dashed var(--line);border-radius:4px;font-size:.92rem}
 .f-empty span{color:var(--ink-2)}
+.compare td:last-child,.compare th:last-child{background:transparent}
+.compare .cmp-tbl td:nth-child(2),.compare .cmp-tbl th:nth-child(2){background:color-mix(in srgb,var(--stucco) 45%,transparent);font-weight:500}
+.compare thead th:last-child{background:var(--paper-2)}
