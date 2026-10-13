@@ -538,3 +538,12 @@ footer .fine{grid-column:1/-1;border-top:1px solid color-mix(in srgb,var(--paper
 @media (max-width:760px){#wall .wall{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .spot-detail .ph{min-height:min(78vh,640px)}
 @media (max-width:760px){.spot-detail .ph{min-height:0}}
+.loc{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:start}
+@media (max-width:860px){.loc{grid-template-columns:1fr}}
+.loc-map{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#F7F3DC}
+.loc-map img{width:100%;height:auto}
+.loc-info{display:grid;gap:18px}
+.loc-info div{border-top:2px solid var(--ink);padding-top:10px;display:grid;gap:4px}
+.loc-info .mono{color:var(--ink-2);font-size:.7rem}
+.loc-info p{font-size:.95rem}
+.xcard.first .ph{aspect-ratio:6/5;height:auto;min-height:0}
