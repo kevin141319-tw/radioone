@@ -216,7 +216,7 @@ function drawTk(){
     const p=priceSum();
     body=`<div class="field"><label>會員身分</label><div class="opt-row">${Object.entries(MEMBER).map(([k,[r,n]])=>`<div class="opt"><input type="radio" name="mem" id="mem-${k}" value="${k}" ${tk.mem===k?'checked':''}><label for="mem-${k}"><b>${n}</b><small>${k==='gold'?'每場限購 4 張':k==='friend'?'LINE 免費加入':'可於下方加入會員'}</small></label></div>`).join('')}</div></div>
     <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span class="field" style="display:inline"><label>張數</label></span><div class="qty"><button type="button" data-q="-1" aria-label="減少">−</button><output id="qtyOut">${tk.qty}</output><button type="button" data-q="1" aria-label="增加">＋</button></div><span class="note">每筆最多 4 張</span></div>
-    <div class="sum"><div><span>一般席 ${nt(PRICE)} × ${tk.qty}</span><span>${nt(p.sub)}</span></div><div><span>${MEMBER[tk.mem][1]}</span><span>−${nt(p.off)}</span></div><div class="total"><span>合計</span><span>${nt(p.tot)}</span></div><div><span>聽歌存摺</span><span>＋${tk.qty} 點</span></div></div>
+    <div class="sum"><div><span>一般席 ${nt(PRICE)} × ${tk.qty}</span><span>${nt(p.sub)}</span></div><div><span>${MEMBER[tk.mem][1]}</span><span>−${nt(p.off)}</span></div><div class="total"><span>合計</span><span>${nt(p.tot)}</span></div><div><span>LIVE ON AIR 存摺</span><span>＋${tk.qty} 點</span></div></div>
     <div class="tk-actions"><button class="btn" type="button" data-go="1">上一步</button><button class="btn solid" type="button" data-go="3">下一步</button></div>`;
   }else if(tk.step===3){
     body=`<div class="fields"><div class="field"><label for="tkName">姓名</label><input id="tkName" required value="${esc(tk.name)}" autocomplete="name"></div><div class="field"><label for="tkEmail">Email</label><input id="tkEmail" type="email" required value="${esc(tk.email)}" autocomplete="email"></div><div class="field"><label for="tkPhone">手機</label><input id="tkPhone" required value="${esc(tk.phone)}" inputmode="tel" autocomplete="tel"></div></div>
@@ -226,7 +226,7 @@ function drawTk(){
     <div class="tk-actions"><button class="btn" type="button" data-go="2">上一步</button><button class="btn solid" type="submit">確認訂票（示範）</button></div>`;
   }else{
     const code='JFCK-'+String(tk.i+1).padStart(2,'0')+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
-    body=`<div class="ticket-stub"><span class="mono" style="color:var(--onair)">示範訂單 · 未實際扣款</span><span class="code">${code}</span><p><b>${esc(tk.name)}</b>，你的 ${tk.qty} 張〈${esc(h[0])}〉${tk.slot==='day'?'15:00 日光茶敘場':'19:30 微光夜話場'}已保留。</p><p class="note">正式上線後，電子票券將寄至 ${esc(tk.email)}，並同步存入 LINE 會員中心。聽歌存摺＋${tk.qty} 點。</p></div>
+    body=`<div class="ticket-stub"><span class="mono" style="color:var(--onair)">示範訂單 · 未實際扣款</span><span class="code">${code}</span><p><b>${esc(tk.name)}</b>，你的 ${tk.qty} 張〈${esc(h[0])}〉${tk.slot==='day'?'15:00 日光茶敘場':'19:30 微光夜話場'}已保留。</p><p class="note">正式上線後，電子票券將寄至 ${esc(tk.email)}，並同步存入 LINE 會員中心。LIVE ON AIR 存摺＋${tk.qty} 點。</p></div>
     <div class="tk-actions"><a class="btn" href="#club" data-closelink>了解 Radio One Club</a><button class="btn solid" type="button" data-close>完成</button></div>`;
   }
   tkForm.innerHTML=head+body;
