@@ -585,3 +585,14 @@ footer .fine{grid-column:1/-1;border-top:1px solid color-mix(in srgb,var(--paper
 .club-hero::after{background:linear-gradient(90deg,rgba(18,13,8,.94) 0%,rgba(18,13,8,.82) 45%,rgba(18,13,8,.2) 100%)}
 @media (max-width:760px){.club-hero::after{background:rgba(18,13,8,.78)}}
 .club-hero h1{max-width:8.2em}
+.piano-hero img{object-position:58% 78%}
+.piano-hero::after{background:linear-gradient(90deg,rgba(20,14,8,.85) 0%,rgba(20,14,8,.55) 38%,rgba(20,14,8,.08) 70%,rgba(20,14,8,.15) 100%)}
+.piano-hero .wrap{padding-block:clamp(120px,16vw,220px) clamp(48px,6vw,80px)}
+.piano-hero h1,.piano-hero .lead{max-width:13em}
+.piano-hero .lead{max-width:24em}
+@media (max-width:760px){.piano-hero::after{background:linear-gradient(180deg,rgba(20,14,8,.2),rgba(20,14,8,.85))}.piano-hero img{object-position:50% 80%}}
+@media (min-width:761px){
+.piano-hero img{width:135%;max-width:none;left:0;right:auto;object-position:50% 80%}
+.piano-hero h1{font-size:clamp(2rem,4.4vw,3.6rem);max-width:7.5em}
+.piano-hero .lead{max-width:22em}
+}
