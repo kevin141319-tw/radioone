@@ -261,7 +261,7 @@ if($('#stamps')){
 const months=$('#jBirth');for(let m=1;m<=12;m++)months.insertAdjacentHTML('beforeend',`<option>${m} 月</option>`);
 let stamped=3;try{const v=localStorage.getItem('r1-stamps');if(v!==null)stamped=+v}catch(e){}
 function drawStamps(){
-  $('#stamps').innerHTML=Array.from({length:10},(_,k)=>`<button type="button" class="stamp${k<stamped?' on':''}${k===9?' free':''}" data-k="${k}" aria-label="第 ${k+1} 格${k<stamped?'，已蓋章':''}">${k===9?(k<stamped?'兌換':'FREE'):(k<stamped?'聽過':k+1)}</button>`).join('');
+  $('#stamps').innerHTML=Array.from({length:10},(_,k)=>`<button type="button" class="stamp${k<stamped?' on':''}${k===9?' free':''}" data-k="${k}" aria-label="第 ${k+1} 格${k<stamped?'，已蓋章':''}">${k===9?(k<stamped?'兌換':'FREE'):(k<stamped?'ON AIR':k+1)}</button>`).join('');
   $('#stampMsg').textContent=stamped>=10?'集滿 10 點！可兌換任一場講唱音樂會一般席門票 1 張。':`已累積 ${stamped} 點，再 ${10-stamped} 張就能換一張免費門票。`;
   try{localStorage.setItem('r1-stamps',stamped)}catch(e){}
 }
