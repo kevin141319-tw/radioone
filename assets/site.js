@@ -142,7 +142,7 @@ $$('.vid').forEach(mountVid);
 
 /* ---------- EVENTS ---------- */
 if($('#seriesTabs')){
-const pickSeries=b=>{if(!b)return;$$('#seriesTabs .tab').forEach(x=>{x.setAttribute('aria-selected',String(x===b));const p=$('#series-'+x.dataset.series);if(p)p.hidden=x!==b})};
+window.pickSeries=b=>{if(!b)return;$$('#seriesTabs .tab').forEach(x=>{x.setAttribute('aria-selected',String(x===b));const p=$('#series-'+x.dataset.series);if(p)p.hidden=x!==b})};
 $('#seriesTabs').onclick=e=>{const b=e.target.closest('.tab');if(b)pickSeries(b)};
 const hashSeries=()=>{const k=location.hash.slice(1);if(k)pickSeries($('#seriesTabs [data-series="'+k+'"]'))};
 addEventListener('hashchange',hashSeries);hashSeries();
@@ -324,4 +324,48 @@ probe.onload=()=>{if(probe.naturalWidth>120)enableEmbeds()};
 probe.src='https://i.ytimg.com/vi/VDBO9sTBm-Y/mqdefault.jpg';
 }
 setTimeout(tune,80);
+/* ---------- events: date finder ---------- */
+if($('#finder')){
+  const pad=n=>String(n).padStart(2,'0');
+  const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const parse=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+  const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+  const WD='日一二三四五六';
+  const fmt=d=>`${d.getMonth()+1}/${d.getDate()}（${WD[d.getDay()]}）`;
+  const EVTS=[
+    {k:'expo',cat:'藝文展覽',t:'《時序之植 不可見的風景》王仁傑個展',img:'event-wang-renjie.jpg',price:'免費參觀',place:'115 展廳',
+     sessions:(()=>{const out=[];for(let d=parse('2026-10-01');d<=parse('2026-11-15');d=addD(d,1)){if(d.getDay()!==1)out.push([iso(d),'11:00–17:00',''])}return out})(),range:true},
+    {k:'jazz',cat:'爵士音樂會',t:'10月｜放送爵士週',img:'event-jazz-week.jpg',price:'$700（含 $150 酒水折抵）',place:'台中放送局',
+     sessions:[['2026-10-30','19:30–21:30','Kuljiyan 谷莉姎爵士四重奏'],['2026-10-31','14:30–16:30','Sonia 爵士四重奏']]},
+    {k:'market',cat:'市集',t:'Radio Market 電台市',img:'event-radio-market.jpg',price:'自由入場',place:'台中放送局廣場',
+     sessions:[['2026-10-31','14:00–20:00',''],['2026-11-01','14:00–20:00','']]}
+  ];
+  const from=$('#fFrom'),to=$('#fTo'),res=$('#fResults'),sum=$('#fSummary');
+  function run(){
+    const a=from.value,b=to.value; if(!a||!b)return;
+    const hits=EVTS.map(e=>({e,s:e.sessions.filter(x=>x[0]>=a&&x[0]<=b)})).filter(h=>h.s.length);
+    const da=parse(a),db=parse(b);
+    sum.textContent=`${fmt(da)}${a===b?'':' – '+fmt(db)}，共 ${hits.length} 檔活動`;
+    if(!hits.length){res.innerHTML=`<div class="f-empty"><b>這段期間還沒有公布的活動。</b><span>試試其他日期，或追蹤我們的 Facebook、Instagram 取得最新消息。</span></div>`;return}
+    res.innerHTML=hits.map(({e,s})=>{
+      let when;
+      if(e.range){when=s.length===1?`<li><b>${fmt(parse(s[0][0]))}</b>${s[0][1]}</li>`:`<li><b>${fmt(parse(s[0][0]))} – ${fmt(parse(s[s.length-1][0]))}</b>開放 ${s.length} 天 · 週二至週日 ${s[0][1]}，週一休館</li>`}
+      else when=s.map(x=>`<li><b>${fmt(parse(x[0]))} ${x[1]}</b>${x[2]}</li>`).join('');
+      return `<article class="f-item"><img src="assets/img/${e.img}" alt="" loading="lazy"><div><span class="f-cat">${e.cat}</span><h4>${e.t}</h4><ul>${when}</ul><p class="note">${e.place} · ${e.price}</p></div><a class="btn small" href="#${e.k}" data-goto="${e.k}">查看詳情</a></article>`}).join('');
+  }
+  function setRange(q){
+    const t=new Date();t.setHours(0,0,0,0);let a=t,b=t;
+    if(q==='weekend'){const d=t.getDay();a=d===0?t:addD(t,6-d);b=d===0?t:addD(a,1)}
+    else if(q==='next7'){b=addD(t,6)}
+    else if(q==='month'){b=new Date(t.getFullYear(),t.getMonth()+1,0)}
+    else if(q==='nextmonth'){a=new Date(t.getFullYear(),t.getMonth()+1,1);b=new Date(t.getFullYear(),t.getMonth()+2,0)}
+    from.value=iso(a);to.value=iso(b);
+    $$('#finderQuick .tab').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.q===q)));run();
+  }
+  $('#finderQuick').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b)setRange(b.dataset.q)});
+  [from,to].forEach(x=>x.addEventListener('change',()=>{if(from.value&&to.value&&from.value>to.value){if(x===from)to.value=from.value;else from.value=to.value}$$('#finderQuick .tab').forEach(t=>t.setAttribute('aria-pressed','false'));run()}));
+  res.addEventListener('click',e=>{const g=e.target.closest('[data-goto]');if(!g)return;e.preventDefault();pickSeries($('#seriesTabs [data-series="'+g.dataset.goto+'"]'));$('#seriesTabs').scrollIntoView({behavior:'smooth',block:'start'})});
+  setRange('next7'); if(!res.querySelector('.f-item'))setRange('month'); if(!res.querySelector('.f-item'))setRange('nextmonth');
+}
 })();
+
