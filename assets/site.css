@@ -574,3 +574,9 @@ footer .fine{grid-column:1/-1;border-top:1px solid color-mix(in srgb,var(--paper
 .drawer .drawer-soc{display:flex;gap:20px;margin-top:16px}
 .drawer .drawer-soc a{font-family:var(--f-body);font-size:1rem;font-weight:500;border:0;padding:0}
 @media (max-width:420px){.hdr-cta .onair{display:none}}
+.evnow.evone{grid-template-columns:minmax(0,1fr)}
+.evone .ev{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);grid-template-rows:auto}
+.evone .ev .ph{aspect-ratio:auto;min-height:420px}
+@media (max-width:760px){.evone .ev{grid-template-columns:1fr}.evone .ev .ph{aspect-ratio:4/5;min-height:0}}
+.evone .ev .bd{padding:28px clamp(20px,3vw,40px)}
+.evone .ev h3{font-size:1.6rem}

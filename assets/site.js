@@ -142,9 +142,9 @@ $$('.vid').forEach(mountVid);
 
 /* ---------- EVENTS ---------- */
 if($('#seriesTabs')){
-const pickSeries=b=>{$$('#seriesTabs .tab').forEach(x=>x.setAttribute('aria-selected',String(x===b)));$('#series-sat').hidden=b.dataset.series!=='sat';$('#series-season').hidden=b.dataset.series!=='season'};
+const pickSeries=b=>{if(!b)return;$$('#seriesTabs .tab').forEach(x=>{x.setAttribute('aria-selected',String(x===b));const p=$('#series-'+x.dataset.series);if(p)p.hidden=x!==b})};
 $('#seriesTabs').onclick=e=>{const b=e.target.closest('.tab');if(b)pickSeries(b)};
-const hashSeries=()=>{if(location.hash==='#season')pickSeries($('[data-series="season"]'));if(location.hash==='#sat')pickSeries($('[data-series="sat"]'))};
+const hashSeries=()=>{const k=location.hash.slice(1);if(k)pickSeries($('#seriesTabs [data-series="'+k+'"]'))};
 addEventListener('hashchange',hashSeries);hashSeries();
 }
 const domains=['文史旗艦','族群母語與土地','唱片工業幕後','廣播傳奇與聲音美學','社群頂流與情緒療癒'];
