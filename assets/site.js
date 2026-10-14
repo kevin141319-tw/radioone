@@ -63,13 +63,23 @@ const spots=[
  ['迴廊光影','轉角螺旋階','通往二樓的梯間擁有磨石子弧形階梯、溫潤木扶手以及挑高立面上的圓拱採光長窗。窗外光線灑落時會在樓梯間形成流動的幾何陰影，是展現老建築立體空間感與動態透視的核心拍照點。'],
  ['遠眺浮雲','城垛望樓台','二樓戶外陽台結合了圓塔造型、宛如歐式城堡的頂部城垛，以及洗石子雕花圍欄。站在這裡可以俯瞰電台街與水源地的綠林景致，是全館視野最開闊、最能感受藍天與歷史建築頂部細節的制高打卡點。']
 ];
-const spotImg=(i,s)=>`<img src="assets/img/spot-${String(i+1).padStart(2,'0')}.jpg" alt="${esc(s[0]+'：'+s[1])}示範打卡照" loading="lazy">`;
+let spotVer='m';try{const v=localStorage.getItem('r1-ver');if(v==='f'||v==='m')spotVer=v}catch(e){}
+const VER={m:'男生版',f:'女生版'};
+const spotImg=(i,s,v)=>{v=v||spotVer;return `<img src="assets/img/spot-${String(i+1).padStart(2,'0')}${v==='f'?'-f':''}.jpg" alt="${esc(s[0]+'：'+s[1])}示範打卡照（${VER[v]}）" loading="lazy">`};
+const verBtns=cls=>`<div class="ver-toggle ${cls||''}" role="group" aria-label="切換示範照版本">${Object.entries(VER).map(([k,n])=>`<button type="button" data-ver="${k}" aria-pressed="${k===spotVer}">${n}</button>`).join('')}</div>`;
 if($('#spotGrid')){
-$('#spotGrid').innerHTML=spots.map((s,i)=>`<button class="spot" data-i="${i}" aria-haspopup="dialog"><div class="ph">${spotImg(i,s)}<span class="no">${String(i+1).padStart(2,'0')}</span></div><h3>${esc(s[0])}：${esc(s[1])}</h3></button>`).join('');
+function renderSpots(){
+  $('#spotGrid').innerHTML=spots.map((s,i)=>`<button class="spot" data-i="${i}" aria-haspopup="dialog"><div class="ph">${spotImg(i,s)}<span class="no">${String(i+1).padStart(2,'0')}</span></div><h3>${esc(s[0])}：${esc(s[1])}</h3></button>`).join('');
+  $$('.ver-toggle button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.ver===spotVer)));
+}
+function setVer(v){spotVer=v;try{localStorage.setItem('r1-ver',v)}catch(e){}renderSpots();const d=$('#spotDlg');if(d.open){const i=+d.dataset.i;const ph=$('#spotBody .ph img');if(ph)ph.outerHTML=spotImg(i,spots[i])}}
+$('#spotGrid').insertAdjacentHTML('beforebegin',`<div class="ver-bar"><span class="note">示範打卡照</span>${verBtns()}</div>`);
+document.addEventListener('click',e=>{const b=e.target.closest('.ver-toggle [data-ver]');if(b)setVer(b.dataset.ver)});
+renderSpots();
 $('#spotGrid').addEventListener('click',e=>{const b=e.target.closest('.spot');if(!b)return;openSpot(+b.dataset.i)});
 function openSpot(i){
   const s=spots[i];
-  $('#spotBody').innerHTML=`<div class="ph">${spotImg(i,s)}<div class="thirds off" id="thirds"></div></div>
+  $('#spotBody').innerHTML=`<div class="ph">${spotImg(i,s)}<div class="thirds off" id="thirds"></div>${verBtns('on-photo')}</div>
   <div class="txt"><p class="eyebrow"><span class="lamp"></span>打卡點 ${String(i+1).padStart(2,'0')} / 10</p>
   <h3 id="spotTitle">${esc(s[0])}：<br>${esc(s[1])}</h3>
   <div class="guide"><div><span class="k">特色與<br>必拍價值</span><p>${esc(s[2])}</p></div></div>
@@ -77,7 +87,7 @@ function openSpot(i){
   <button class="btn small" type="button" id="nextSpot">下一個打卡點 →</button></div></div>`;
   $('#thirdsBtn').onclick=e=>{const on=$('#thirds').classList.toggle('off');e.target.setAttribute('aria-pressed',String(!on));e.target.textContent=on?'顯示三分構圖線':'隱藏構圖線'};
   $('#nextSpot').onclick=()=>openSpot((i+1)%spots.length);
-  const d=$('#spotDlg'); if(!d.open)d.showModal(); d.scrollTop=0;
+  const d=$('#spotDlg'); d.dataset.i=i; if(!d.open)d.showModal(); d.scrollTop=0;
 }
 }
 /* ---------- HISTORY ---------- */
