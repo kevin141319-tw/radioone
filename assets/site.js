@@ -110,15 +110,15 @@ $('#eraTabs').onclick=e=>{const b=e.target.closest('.tab');if(b)showEra(+b.datas
 /* ---------- SPACES ---------- */
 const legends={
  site:{label:'全區配置 · 主建築＋東側庭園',items:[['#A8C6B3','主建築一樓','展演、展覽、餐飲與工作室','1F'],['#C9D7A8','廣播綠意庭園','圓形廣場、日池月池、老榕與石燈籠，可容納 300–500 人','戶外'],['#D9D0BF','二戰防空洞與後院','園區後方的圓拱防空洞秘境','—']]},
- '1F':{label:'一樓 · 展演・展覽・餐飲',items:[['#C8DACB','多功能展演空間 105','80–120 席，音樂會與展演主場','展演'],['#7ABDB6','展演舞台 106','長邊舞台，近距離聆聽','展演'],['#A6DCEB','文創商品陳列 103','圓拱窗下的選品展間','參觀'],['#D3B9E2','藝術家工作室 104','駐館創作與工作坊','參觀'],['#F7C6D0','義式餐廳 115','流行音樂實驗餐廳，含包廂 116、117','餐飲'],['#EFD394','廚房 120・撤餐區 121','後場','—']]},
- '2F':{label:'二樓 · Café・展廳',items:[['#F2D2B4','咖啡館 202','老洋樓裡的文創 Café','餐飲'],['#F2D2B4','陽台 207','菱格紋女兒牆後的戶外座位','餐飲'],['#D3E3B9','多功能展廳 203','常設與特展、黑膠與收音機展示','展覽'],['#C7CBEA','辦公室 201','營運團隊','—']]}
+ '1F':{label:'一樓 · 展演・展覽・餐飲',items:[['#C8DACB','多功能展演空間 105','80–120 席，音樂會與展演主場','展演'],['#7ABDB6','展演舞台 106','長邊舞台，近距離聆聽','展演'],['#A6DCEB','文創商品陳列 103','圓拱窗下的選品展間','參觀'],['#D3B9E2','藝術家工作室 104','駐館創作與工作坊','參觀'],['#F7C6D0','餐廳預定空間 115','流行音樂實驗餐廳，含包廂 116、117','餐飲'],['#EFD394','廚房 120・撤餐區 121','後場','—']]},
+ '2F':{label:'二樓 · Café・展廳',items:[['#F2D2B4','咖啡館預定空間 202','','餐飲'],['#F2D2B4','陽台 207','菱格紋女兒牆後的戶外座位','餐飲'],['#D3E3B9','多功能展廳 203','常設與特展、黑膠與收音機展示','展覽'],['#C7CBEA','辦公室 201','營運團隊','—']]}
 };
 if($('#planTabs')){
 function showPlan(k){
   $$('#planTabs .tab').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.plan===k)));
   const img=$('#planImg'); img.src=`assets/plan/plan-${k}.png`; img.alt=`臺中放送局 ${k==='site'?'全區':k} 平面圖`;
   $('#planLabel').textContent=legends[k].label;
-  $('#legend').innerHTML=legends[k].items.map(([c,n,d,z])=>`<li><i style="background:${c}"></i><div><b>${n}</b><small>${d}</small></div><span class="mono">${z}</span></li>`).join('');
+  $('#legend').innerHTML=legends[k].items.map(([c,n,d,z])=>`<li><i style="background:${c}"></i><div><b>${n}</b>${d?`<small>${d}</small>`:''}</div><span class="mono">${z}</span></li>`).join('');
 }
 $('#planTabs').onclick=e=>{const b=e.target.closest('.tab');if(b)showPlan(b.dataset.plan)};showPlan('site');
 $('#planImg').onclick=()=>{$('#planZoom').src=$('#planImg').src;$('#planZoom').alt=$('#planImg').alt;$('#planDlg').showModal()};
