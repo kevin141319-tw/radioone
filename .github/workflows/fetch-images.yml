@@ -1,0 +1,27 @@
+name: fetch-incoming-images
+on:
+  push:
+    paths: ['incoming/urls.txt']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download images listed in incoming/urls.txt
+        run: |
+          mkdir -p incoming/raw
+          while read -r name url; do
+            [ -z "$name" ] && continue
+            curl -sSfL -A "Mozilla/5.0" -o "incoming/raw/$name" "$url" || echo "FAILED $name"
+          done < incoming/urls.txt
+          ls -la incoming/raw
+      - name: Commit
+        run: |
+          git config user.name "radioone-bot"
+          git config user.email "radioone-bot@users.noreply.github.com"
+          git add incoming/raw
+          git commit -m "自動下載待處理圖片" || echo "nothing"
+          git push
