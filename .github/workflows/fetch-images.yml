@@ -12,14 +12,17 @@ jobs:
       - uses: actions/checkout@v4
       - name: Download images listed in incoming/urls.txt
         run: |
+          # 清單被刪除（清理暫存）時也會觸發，這時直接結束，不算失敗
+          if [ ! -f incoming/urls.txt ]; then
+            echo "incoming/urls.txt 不存在，無需下載"
+            exit 0
+          fi
           mkdir -p incoming/raw
           while read -r name url; do
             [ -z "$name" ] && continue
             curl -sSfL -A "Mozilla/5.0" -o "incoming/raw/$name" "$url" || echo "FAILED $name"
           done < incoming/urls.txt
           ls -la incoming/raw
-      - name: Commit
-        run: |
           git config user.name "radioone-bot"
           git config user.email "radioone-bot@users.noreply.github.com"
           git add incoming/raw
