@@ -662,3 +662,15 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
 .btn.line-btn:hover{background:#05a648;border-color:#05a648;color:#fff}
 .btn.line-btn svg{width:20px;height:20px}
 @media (max-width:640px){.line-cta{padding:24px 20px}.line-btn{width:100%;justify-content:center}}
+
+/* 手機版：Logo 下方顯示「臺中放送局」 */
+@media (max-width:900px){
+  .logo{flex-wrap:wrap;column-gap:.45em;row-gap:1px;line-height:1.05}
+  .logo small{display:block;flex-basis:100%;font-size:.78rem;font-weight:700;letter-spacing:.18em;color:var(--ink)}
+}
+@media (max-width:900px){
+  .menu-btn{white-space:nowrap;flex-shrink:0}
+  .hdr-cta{gap:4px}
+  .hdr-cta .soc{width:30px;height:30px}
+}
+@media (max-width:370px){.hdr-cta .soc{display:none}}
