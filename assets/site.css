@@ -652,3 +652,13 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
 .recap .gal img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
 .recap.wide .bd{padding:28px clamp(20px,3vw,36px)}
 .ev dd small{color:var(--ink-2)}
+
+/* LINE 官方帳號 */
+.line-band{padding-top:0}
+.line-cta{display:flex;align-items:center;justify-content:space-between;gap:24px 40px;flex-wrap:wrap;padding:32px 36px;border:1px solid var(--line);border-radius:20px;background:var(--card)}
+.line-cta h2{margin:.2em 0 .3em}
+.line-cta p:last-child{margin:0;color:var(--ink-2);max-width:36em}
+.btn.line-btn{background:#06C755;border-color:#06C755;color:#fff;font-weight:600}
+.btn.line-btn:hover{background:#05a648;border-color:#05a648;color:#fff}
+.btn.line-btn svg{width:20px;height:20px}
+@media (max-width:640px){.line-cta{padding:24px 20px}.line-btn{width:100%;justify-content:center}}
