@@ -674,3 +674,11 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
   .hdr-cta .soc{width:30px;height:30px}
 }
 @media (max-width:370px){.hdr-cta .soc{display:none}}
+
+/* 電腦版：放大「臺中放送局」 */
+@media (min-width:901px){
+  .logo{align-items:center;gap:.6em}
+  .logo b{font-size:1.45rem}
+  .logo i{font-size:1.15rem}
+  .logo small{font-size:1.12rem;font-weight:700;letter-spacing:.14em;color:var(--ink);padding-left:.75em;margin-left:.15em;border-left:1.5px solid var(--line);line-height:1.2}
+}
