@@ -1,0 +1,1 @@
+line-qr.svg https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Flin.ee%2FpATTQXr&size=600x600&format=svg&margin=8&color=25190F&bgcolor=FFFFFF
