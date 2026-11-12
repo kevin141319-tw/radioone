@@ -697,3 +697,6 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
 @media (min-width:760px){.page-hero p.lead.two-line{max-width:none}.page-hero p.lead.two-line span{white-space:nowrap}}
 .hero .lead.two-line span{display:block}
 @media (min-width:760px){.hero .lead.two-line{max-width:none}.hero .lead.two-line span{white-space:nowrap}}
+.piano-hero h1.h-lines span{display:block}
+@media (min-width:761px){.piano-hero h1.h-lines{max-width:none}.piano-hero h1.h-lines span{white-space:nowrap}}
+@media (max-width:760px){.piano-hero h1.h-lines{font-size:min(2.6rem,calc((100vw - 44px) / 10.4))}.piano-hero h1.h-lines span{white-space:nowrap}}
