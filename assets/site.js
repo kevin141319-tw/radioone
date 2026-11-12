@@ -344,11 +344,11 @@ if($('#finder')){
   const fmt=d=>`${d.getMonth()+1}/${d.getDate()}（${WD[d.getDay()]}）`;
   const EVTS=[
     {k:'expo',cat:'藝文展覽',t:'《時序之植 不可見的風景》王仁傑個展',img:'event-wang-renjie.jpg',price:'免費參觀',place:'115 展廳',
-     sessions:(()=>{const out=[];for(let d=parse('2026-10-01');d<=parse('2026-11-15');d=addD(d,1)){if(d.getDay()!==1)out.push([iso(d),'11:00–17:00',''])}return out})(),range:true},
-    {k:'jazz',cat:'爵士音樂會',t:'10月｜放送爵士週',img:'event-jazz-week.jpg',price:'$700（含 $150 酒水折抵）',place:'台中放送局',
-     sessions:[['2026-10-30','19:30–21:30','Kuljiyan 谷莉姎爵士四重奏'],['2026-10-31','14:30–16:30','Sonia 爵士四重奏']]},
-    {k:'market',cat:'市集',t:'Radio Market 電台市',img:'event-radio-market.jpg',price:'自由入場',place:'台中放送局廣場',
-     sessions:[['2026-10-31','14:00–20:00',''],['2026-11-01','14:00–20:00','']]}
+     sessions:(()=>{const out=[];for(let d=parse('2026-10-01');d<=parse('2026-11-30');d=addD(d,1)){if(d.getDay()!==1)out.push([iso(d),'11:00–17:00',''])}return out})(),range:true},
+    {k:'concert',cat:'音樂會',t:'念舊｜李昀陵音樂會',img:'ev-concert-liyunling.jpg',price:'NT$700（含 NT$150 飲料兌換券）',place:'臺中放送局',
+     sessions:[['2026-11-14','14:30 開始（14:00 入場）','李昀陵 × 吉他手劉旭明']]},
+    {k:'film',cat:'放送電影院',t:'《穿著旗袍的女孩》放映＋導演座談',img:'ev-film-qipao.jpg',price:'免費入場（需事先報名）',place:'臺中放送局',
+     sessions:[['2026-11-15','14:00–16:00','放映＋徐慶珠導演映後座談']]}
   ];
   const from=$('#fFrom'),to=$('#fTo'),res=$('#fResults'),sum=$('#fSummary');
   function run(){
