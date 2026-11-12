@@ -717,3 +717,5 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
 .xcard-mini:hover{border-color:var(--ink)}
 .xcard-mini span{color:var(--ink-2);font-size:.92rem}
 @media (max-width:760px){.line-join{grid-template-columns:1fr}.line-more{grid-template-columns:1fr}.line-hero .line-btn{width:auto}}
+.line-url{color:#06A045;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.line-url:hover{color:var(--ink)}
