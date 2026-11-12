@@ -344,7 +344,7 @@ if($('#finder')){
   const fmt=d=>`${d.getMonth()+1}/${d.getDate()}（${WD[d.getDay()]}）`;
   const EVTS=[
     {k:'expo',cat:'藝文展覽',t:'《時序之植 不可見的風景》王仁傑個展',img:'event-wang-renjie.jpg',price:'免費參觀',place:'115 展廳',
-     sessions:(()=>{const out=[];for(let d=parse('2026-10-01');d<=parse('2026-11-30');d=addD(d,1)){if(d.getDay()!==1)out.push([iso(d),'11:00–17:00',''])}return out})(),range:true},
+     sessions:(()=>{const out=[];for(let d=parse('2026-10-01');d<=parse('2026-11-30');d=addD(d,1)){if(d.getDay()!==1)out.push([iso(d),'11:00–17:00',''])}return out})(),range:true,span:'2026.10.01 – 2026.11.30'},
     {k:'concert',cat:'音樂會',t:'念舊｜李昀陵音樂會',img:'ev-concert-liyunling.jpg',price:'NT$700（含 NT$150 飲料兌換券）',place:'臺中放送局',
      sessions:[['2026-11-14','14:30 開始（14:00 入場）','李昀陵 × 吉他手劉旭明']]},
     {k:'film',cat:'放送電影院',t:'《穿著旗袍的女孩》放映＋導演座談',img:'ev-film-qipao.jpg',price:'免費入場（需事先報名）',place:'臺中放送局',
@@ -359,7 +359,7 @@ if($('#finder')){
     if(!hits.length){res.innerHTML=`<div class="f-empty"><b>這段期間還沒有公布的活動。</b><span>試試其他日期，或追蹤我們的 Facebook、Instagram 取得最新消息。</span></div>`;return}
     res.innerHTML=hits.map(({e,s})=>{
       let when;
-      if(e.range){when=s.length===1?`<li><b>${fmt(parse(s[0][0]))}</b>${s[0][1]}</li>`:`<li><b>${fmt(parse(s[0][0]))} – ${fmt(parse(s[s.length-1][0]))}</b>開放 ${s.length} 天 · 週二至週日 ${s[0][1]}，週一休館</li>`}
+      if(e.range){const all=e.sessions,d0=all[0][0].replace(/-/g,'.'),d1=all[all.length-1][0].replace(/-/g,'.');when=`<li><b>${e.span||d0+' – '+d1}</b>週二至週日 ${all[0][1]}，週一休館</li>`}
       else when=s.map(x=>`<li><b>${fmt(parse(x[0]))} ${x[1]}</b>${x[2]}</li>`).join('');
       return `<article class="f-item"><img src="assets/img/${e.img}" alt="" loading="lazy"><div><span class="f-cat">${e.cat}</span><h4>${e.t}</h4><ul>${when}</ul><p class="note">${e.place} · ${e.price}</p></div><a class="btn small" href="#${e.k}" data-goto="${e.k}">查看詳情</a></article>`}).join('');
   }
