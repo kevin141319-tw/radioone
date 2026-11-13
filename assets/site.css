@@ -719,3 +719,10 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
 @media (max-width:760px){.line-join{grid-template-columns:1fr}.line-more{grid-template-columns:1fr}.line-hero .line-btn{width:auto}}
 .line-url{color:#06A045;font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .line-url:hover{color:var(--ink)}
+/* 展期延長提示 */
+.ext-note{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:10px 0 4px;padding:10px 14px;border:1px solid rgba(183,50,37,.35);border-left:4px solid var(--onair);border-radius:10px;background:rgba(183,50,37,.06);font-size:.92rem;line-height:1.6;color:var(--ink)}
+.ext-note b{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.12em;color:#fff;background:var(--onair);padding:2px 8px;border-radius:999px}
+.ext-note strong{color:var(--onair)}
+.ext-note{display:block}
+.ext-note b{display:inline-block;margin-right:8px;vertical-align:1px}
+.ext-note strong{white-space:nowrap}

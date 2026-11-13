@@ -344,7 +344,7 @@ if($('#finder')){
   const fmt=d=>`${d.getMonth()+1}/${d.getDate()}（${WD[d.getDay()]}）`;
   const EVTS=[
     {k:'expo',cat:'藝文展覽',t:'《時序之植 不可見的風景》王仁傑個展',img:'event-wang-renjie.jpg',price:'免費參觀',place:'115 展廳',
-     sessions:(()=>{const out=[];for(let d=parse('2026-10-01');d<=parse('2026-11-30');d=addD(d,1)){if(d.getDay()!==1)out.push([iso(d),'11:00–17:00',''])}return out})(),range:true,span:'2026.10.01 – 2026.11.30'},
+     sessions:(()=>{const out=[];for(let d=parse('2026-10-01');d<=parse('2026-11-30');d=addD(d,1)){if(d.getDay()!==1)out.push([iso(d),'11:00–17:00',''])}return out})(),range:true,span:'2026.10.01 – 2026.11.30（延長展期，海報原訂 11/15）'},
     {k:'concert',cat:'音樂會',t:'念舊｜李昀陵音樂會',img:'ev-concert-liyunling.jpg',price:'NT$700（含 NT$150 飲料兌換券）',place:'臺中放送局',
      sessions:[['2026-11-14','14:30 開始（14:00 入場）','李昀陵 × 吉他手劉旭明']]},
     {k:'film',cat:'放送電影院',t:'《穿著旗袍的女孩》放映＋導演座談',img:'ev-film-qipao.jpg',price:'免費入場（需事先報名）',place:'臺中放送局',
