@@ -734,3 +734,19 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
 .recap .gal.g1{grid-template-columns:1fr}
 .recap .gal.g1 img{aspect-ratio:auto;height:100%;min-height:320px}
 .recap .gal.g1 img{aspect-ratio:4/3;height:auto;min-height:0}
+/* 首頁：媒體報導焦點 */
+.press-hl{background:var(--ink);color:var(--paper)}
+.press-hl a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px 28px;padding:20px 0;text-decoration:none;color:inherit}
+.press-hl .mono{font-size:.75rem;letter-spacing:.14em;color:#E9B8A8;white-space:nowrap}
+.press-hl b{font-family:var(--f-zh-display);font-size:clamp(1.02rem,1.6vw,1.25rem);font-weight:700;line-height:1.45}
+.press-hl .go{border:1px solid currentColor;border-radius:999px;padding:8px 18px;font-size:.92rem;white-space:nowrap;transition:background .2s,color .2s}
+.press-hl a:hover .go{background:var(--paper);color:var(--ink)}
+@media (max-width:860px){.press-hl a{grid-template-columns:1fr;gap:8px;padding:18px 0}.press-hl .go{justify-self:start;margin-top:4px}}
+/* 首頁大圖：媒體報導焦點 */
+.press-pill{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:22px;max-width:min(760px,100%);padding:12px 18px;border-radius:16px;background:rgba(20,14,8,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);color:#F6EFE2;text-decoration:none;transition:background .2s,border-color .2s}
+.press-pill:hover{background:rgba(20,14,8,.75);border-color:rgba(255,255,255,.5)}
+.press-pill .tag{font-size:.75rem;font-weight:700;letter-spacing:.12em;background:#B6311D;color:#fff;padding:3px 10px;border-radius:999px}
+.press-pill .src{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;color:#E9D9BF}
+.press-pill b{flex-basis:100%;font-family:var(--f-zh-display);font-size:clamp(.98rem,1.5vw,1.12rem);line-height:1.5;font-weight:700}
+.press-pill .go{display:none}
+@media (min-width:761px){.press-pill b{flex-basis:auto;flex:1 1 auto}.press-pill .go{display:inline;font-size:.88rem;white-space:nowrap;border-bottom:1px solid currentColor}}
