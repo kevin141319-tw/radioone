@@ -726,3 +726,11 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
 .ext-note{display:block}
 .ext-note b{display:inline-block;margin-right:8px;vertical-align:1px}
 .ext-note strong{white-space:nowrap}
+/* 活動紀錄：三欄相簿；系列活動：已結束提示 */
+.recap .gal.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ended-box{padding:28px 30px;border:1px dashed var(--line);border-radius:var(--r);background:var(--card);display:grid;gap:16px}
+.ended-box p{margin:0;color:var(--ink-2)}
+.ended-actions{display:flex;flex-wrap:wrap;gap:10px}
+.recap .gal.g1{grid-template-columns:1fr}
+.recap .gal.g1 img{aspect-ratio:auto;height:100%;min-height:320px}
+.recap .gal.g1 img{aspect-ratio:4/3;height:auto;min-height:0}
