@@ -750,3 +750,19 @@ footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr))}
 .press-pill b{flex-basis:100%;font-family:var(--f-zh-display);font-size:clamp(.98rem,1.5vw,1.12rem);line-height:1.5;font-weight:700}
 .press-pill .go{display:none}
 @media (min-width:761px){.press-pill b{flex-basis:auto;flex:1 1 auto}.press-pill .go{display:inline;font-size:.88rem;white-space:nowrap;border-bottom:1px solid currentColor}}
+/* 頁尾：網站設計・維護 讀樂樂 */
+footer .foot-bottom{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:20px 32px;border-top:1px solid color-mix(in srgb,var(--paper) 18%,transparent);padding-top:18px}
+footer .foot-bottom .fine{border-top:0;padding-top:0;margin:0;flex:1 1 auto}
+footer .made-by{display:flex;align-items:center;gap:14px;opacity:1;text-decoration:none;flex:0 0 auto;cursor:default}
+footer .made-by:hover{text-decoration:none}
+footer .made-by span{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;opacity:.6}
+footer .made-by img{height:58px;width:auto;display:block}
+footer .dl-on-light{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) footer .dl-on-dark{display:none}:root:not([data-theme="light"]) footer .dl-on-light{display:block}}
+:root[data-theme="dark"] footer .dl-on-dark{display:none}
+:root[data-theme="dark"] footer .dl-on-light{display:block}
+@media (max-width:760px){footer .foot-bottom{flex-direction:column;align-items:flex-start}}
+footer .made-by img.dl-on-light{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) footer .made-by img.dl-on-dark{display:none}:root:not([data-theme="light"]) footer .made-by img.dl-on-light{display:block}}
+:root[data-theme="dark"] footer .made-by img.dl-on-dark{display:none}
+:root[data-theme="dark"] footer .made-by img.dl-on-light{display:block}
