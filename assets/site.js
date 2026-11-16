@@ -319,7 +319,7 @@ function split(){
   $('#barHost').style.width=box?(Math.max(0,host)/box*100)+'%':'75%';$('#barVenue').style.width=box?(vFinal/box*100)+'%':'25%';
   $('#splitSum').innerHTML=`<div><span>票房總收入</span><span>${nt(box)}</span></div><div><span>主辦團隊</span><span>${nt(host)}</span></div><div><span>放送局分潤 25%</span><span>${nt(venue)}</span></div>${venue<floor?`<div><span>未達保底，以常規場租 50% 計</span><span>${nt(floor)}</span></div>`:''}<div><span>水電清潔耗損費</span><span>${nt(2000)}</span></div><div class="total"><span>主辦實拿（扣耗損費）</span><span>${nt(host-2000)}</span></div>`;
 }
-$('#split').addEventListener('input',split);$('#split').addEventListener('change',split);split();
+if($('#split')){$('#split').addEventListener('input',split);$('#split').addEventListener('change',split);split();}
 
 }
 /* ---------- home: up next ---------- */
