@@ -773,3 +773,7 @@ footer .made-by .contact{display:flex;flex-direction:column;gap:4px;font-family:
 footer .made-by .contact a{opacity:.8}
 .recap .gal.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .recap .gal.g2 img{aspect-ratio:4/3}
+/* 系列活動：全部近期活動 */
+.series-panel.in-all{margin-bottom:44px}
+.series-panel.in-all::before{content:attr(data-label);display:block;font-family:var(--f-zh-display);font-size:1.35rem;font-weight:700;margin:0 0 6px;padding-top:6px}
+.series-panel.in-all+.series-panel.in-all{border-top:1px solid var(--line);padding-top:28px}

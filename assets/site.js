@@ -152,7 +152,10 @@ $$('.vid').forEach(mountVid);
 
 /* ---------- EVENTS ---------- */
 if($('#seriesTabs')){
-window.pickSeries=b=>{if(!b)return;$$('#seriesTabs .tab').forEach(x=>{x.setAttribute('aria-selected',String(x===b));const p=$('#series-'+x.dataset.series);if(p)p.hidden=x!==b})};
+window.pickSeries=b=>{if(!b)return;const all=b.dataset.series==='all';$$('#seriesTabs .tab').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
+$$('.series-panel').forEach(p=>{const has=!!p.querySelector('article.ev');p.hidden=all?!has:p.id!=='series-'+b.dataset.series;p.classList.toggle('in-all',all)});
+const empty=$('#seriesEmpty');if(empty)empty.hidden=!(all&&!$$('.series-panel').some(p=>!p.hidden))};
+pickSeries($('#seriesTabs [data-series="all"]'));
 $('#seriesTabs').onclick=e=>{const b=e.target.closest('.tab');if(b)pickSeries(b)};
 const hashSeries=()=>{const k=location.hash.slice(1);if(k)pickSeries($('#seriesTabs [data-series="'+k+'"]'))};
 addEventListener('hashchange',hashSeries);hashSeries();
