@@ -345,6 +345,8 @@ if($('#finder')){
   const EVTS=[
     {k:'expo',cat:'藝文展覽',t:'《時序之植 不可見的風景》王仁傑個展',img:'event-wang-renjie.jpg',price:'免費參觀',place:'115 展廳',
      sessions:(()=>{const out=[];for(let d=parse('2026-10-01');d<=parse('2026-11-30');d=addD(d,1)){if(d.getDay()!==1)out.push([iso(d),'11:00–17:00',''])}return out})(),range:true,span:'2026.10.01 – 2026.11.30（延長展期，海報原訂 11/15）'},
+    {k:'market',cat:'市集',t:'Radio Market 電台市｜爪爪派對',img:'ev-market-paws.jpg',price:'講座免費（需報名）；手作課 NT$850 起',place:'臺中放送局',
+     sessions:[['2026-12-19','13:00–19:00','市集＋14:00 寵物生命講座＋15:00–19:00 植繪腳掌花器手作課'],['2026-12-20','13:00–19:00','市集＋13:00–17:00 植繪腳掌花器手作課']]},
   ];
   const from=$('#fFrom'),to=$('#fTo'),res=$('#fResults'),sum=$('#fSummary');
   function run(){
