@@ -777,3 +777,5 @@ footer .made-by .contact a{opacity:.8}
 .series-panel.in-all{margin-bottom:44px}
 .series-panel.in-all::before{content:attr(data-label);display:block;font-family:var(--f-zh-display);font-size:1.35rem;font-weight:700;margin:0 0 6px;padding-top:6px}
 .series-panel.in-all+.series-panel.in-all{border-top:1px solid var(--line);padding-top:28px}
+/* 首頁近期活動：4 張卡 */
+@media (min-width:1181px){.evnow.ev4{grid-template-columns:repeat(4,minmax(0,1fr))}.evnow.ev4 .ev h3{font-size:1.2rem}}
